@@ -1,0 +1,10 @@
+#+title: C++
+#+author: Carlos León
+#+language: es
+
+* Contenido
+
+- [[file:compilacion.reveal.org]]
+- [[file:instaladores.org]]
+- [[file:librerias.org]]
+

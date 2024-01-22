@@ -1,0 +1,463 @@
+#+title: Compilación C/C++
+#+setupfile: setup.org
+
+* Cómo se pasa de un ejecutable a C++
+:PROPERTIES:
+:CUSTOM_ID: cómo-se-pasa-de-un-ejecutable-a-c
+:END:
+
+#+REVEAL: split
+
+Crear un ejecutable desde código C++ implica /3 pasos/:
+
+- *Preprocesado*
+- *Compilación*
+- *Enlazado*
+
+** Desarrollo
+:PROPERTIES:
+:CUSTOM_ID: desarrollo
+:END:
+=while(!terminado)=:
+
+preprocesar \(\rightarrow\) compilar \(\rightarrow\) enlazar
+\(\rightarrow\) depurar
+
+
+** Release
+:PROPERTIES:
+:CUSTOM_ID: release
+:END:
+=if(fin)=:
+
+preprocesar \(\rightarrow\) compilar en release \(\rightarrow\) enlazar
+con librerías release \(\rightarrow\) empaquetar
+
+
+** Preprocesado
+:PROPERTIES:
+:CUSTOM_ID: preprocesado
+:END:
+
+#+REVEAL: split
+
+El preprocesador es un programa que entiende directivas =#define=,
+=#include=, =#ifndef=
+
+#+REVEAL: split
+
+Esas directivas /no son sintaxis C/C++/
+
+#+REVEAL: split
+
+Es un proceso básico, muchas veces de simple reemplazo o elección de
+texto
+
+#+REVEAL: split
+
+Trabaja en un archivo cada vez, y no analiza si el C++ es correcto o no
+
+#+REVEAL: split
+
+Genera algo parecido a un archivo C++ alternativo, ya sin directivas,
+sólo con C++
+
+Y se pasa a compilar
+
+** Compilación
+:PROPERTIES:
+:CUSTOM_ID: compilación
+:END:
+
+#+REVEAL: split
+
+La compilación es la traducción de código C++ (ya con el preprocesador
+aplicado) a código máquina (que cambiará, dependiendo de la plataforma)
+
+#+REVEAL: split
+
+Los compiladores permiten generar código /objeto/ por cada archivo de
+código de forma independiente
+
+#+REVEAL: split
+
+Es posible /compilar/ correctamente archivos C++ que hacen referencia a
+funciones declaradas, pero no implementadas:
+
+#+begin_src cpp
+void g();
+
+void f() {
+  g(); // válido para *compilar*
+}
+#+end_src
+
+#+REVEAL: split
+
+Si juntamos varios archivos en código objeto juntos, tenemos una
+/biblioteca estática/ (/static library/)
+
+#+REVEAL: split
+
+Los errores de C++, o de llamadas a cosas no declaradas, ocurren durante
+el compilado
+
+*** Bibliotecas durante la compilación
+:PROPERTIES:
+:CUSTOM_ID: bibliotecas-durante-la-compilación
+:END:
+Muchas funciones no las /declaramos/ nosotros, pero sí las usamos
+
+#+REVEAL: split
+
+Como al compilador no le importa la implementación, sólo la declaración,
+nos vale con un /.h/:
+
+#+begin_src cpp
+#include "SDL.h" // sólo declaraciones
+#+end_src
+
+** Enlazado
+:PROPERTIES:
+:CUSTOM_ID: enlazado
+:END:
+
+#+REVEAL: split
+
+Enlazar consiste en convertir /varios archivos en código objeto/ en un
+ejecutable o biblioteca de vínculo dinámico (/dynamic/shared library/)
+
+#+REVEAL: split
+
+Sólo se puede enlazar cosas que ya estén compiladas
+
+Eso quiere decir que en enlazador (/linker/) da un tipo de errores que
+no son de C++, sino de enlazado de objetos
+
+#+REVEAL: split
+
+En general, estos errores ocurren cuando hemos usado una cosa que está
+declarada, pero no implementada:
+
+#+begin_src cpp
+void g();
+
+void f() {
+  g(); // si ningún otro archivo implementa `g`
+       // el enlazador dará un error
+}
+#+end_src
+
+** Bibliotecas durante en enlazado
+:PROPERTIES:
+:CUSTOM_ID: bibliotecas-durante-en-enlazado
+:END:
+Durante en enlazado, hay que decirle al programa en qué archivos están
+los símbolos que no hemos creado nosotros
+
+#+REVEAL: split
+
+Es decir, hay que decirle dónde están los =.lib= (VS) que corresponden a
+los =.h=
+
+#+REVEAL: split
+
+Si hemos /compilado/ con los =.h= correctos, pero no usamos los =.lib=
+correspondientes, tendremos un error de enlazado
+
+* Configuraciones
+:PROPERTIES:
+:CUSTOM_ID: configuraciones
+:END:
+
+#+REVEAL: split
+
+Hay muchas maneras de traducir el código desde C++ a código máquina
+
+#+REVEAL: split
+
+Los compiladores ofrecen muchas opciones para decir qué tipo de
+traducción queremos hacer
+
+** Arquitectura
+:PROPERTIES:
+:CUSTOM_ID: arquitectura
+:END:
+Se puede generar código para 32 y 64 bits (usualmente)
+
+#+REVEAL: split
+
+Es importante usar bibliotecas que sean de la misma plataforma que
+nuestro ejecutable
+
+
+** Optimización
+:PROPERTIES:
+:CUSTOM_ID: optimización
+:END:
+Hay toda una familia de opciones (dependiendo del compilador) que
+permiten que se apliquen técnicas de traducción que generan un código
+más eficiente
+
+#+REVEAL: split
+
+Pueden cambiar la lógica de nuestro código, pero no el comportamiento
+final (...)
+
+#+REVEAL: split
+
+De hecho, hay algunas opciones de optimización "peligrosas": pueden
+cambiar la semántica del programa, a cambio de una optimización muy
+agresiva
+
+(También las hay seguras)
+
+
+** Depuración
+:PROPERTIES:
+:CUSTOM_ID: depuración
+:END:
+
+#+REVEAL: split
+
+Cuando compilamos, perdemos todo el código fuente
+
+Entonces, ¿cómo sabe el depurador en qué línea /de código/ estamos?
+
+#+REVEAL: split
+
+Con ciertas opciones, el compilador guarda información sobre la relación
+entre líneas de código máquina, y el código C++ correspondiente (archivo
+y línea)
+
+#+REVEAL: split
+
+Los símbolos de depuración pueden estar:
+
+- En el ejecutable (=GCC=)
+- En un archivo separado (=PDB= en VS)
+
+* Opciones de ejecución
+:PROPERTIES:
+:CUSTOM_ID: opciones-de-ejecución
+:END:
+
+#+REVEAL: split
+
+En un IDE no sólo construimos, también ejecutamos
+
+#+REVEAL: split
+
+Cuando un programa se ejecuta, se ejecuta en una ruta concreta, y esa es
+la ruta base
+
+#+REVEAL: split
+
+Podemos cambiar la ruta base, que es a partir de la cual el ejecutable
+encontrará los recursos:
+
+#+begin_src c++
+// /raiz_proyecto
+//    ejecutable.exe
+//    /subcarpeta
+//        archivo.txt
+//
+file.open("subcarpeta/archivo.txt")
+#+end_src
+
+* Ejemplo GCC
+:PROPERTIES:
+:CUSTOM_ID: ejemplo-gcc
+:END:
+
+#+REVEAL: split
+
+Compilar:
+
+#+begin_src sh
+gcc -c sdl.gcc -I/usr/local/include/SDL2
+#+end_src
+
+#+REVEAL: split
+
+Enlazar:
+
+#+begin_src sh
+gcc sdl.o -L/usr/local/lib -lSDL2 -o sdl.exe
+#+end_src
+
+#+REVEAL: split
+
+Ejecutar:
+
+#+begin_src sh
+./sdl.exe
+#+end_src
+
+#+REVEAL: split
+
+Compilar y enlazar:
+
+#+begin_src sh
+gcc sdl.cpp -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2 -o sdl.exe
+#+end_src
+
+#+REVEAL: split
+
+Añadir información de depuración:
+
+#+begin_src sh
+gcc -g sdl.cpp -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2 -o sdl.exe
+#+end_src
+
+#+REVEAL: split
+
+Optimización
+
+#+begin_src sh
+gcc -O2 sdl.cpp -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2 -o sdl.exe
+#+end_src
+
+* Ejemplo Visual Studio
+:PROPERTIES:
+:CUSTOM_ID: ejemplo-visual-studio
+:END:
+
+#+REVEAL: split
+
+#+caption: Creamos una nueva "aplicación de Windows"
+[[file:2020-02-03-20-04-05.png]]
+
+#+REVEAL: split
+
+#+caption: Ponemos los nombres de las rutas
+[[file:2020-02-03-20-04-58.png]]
+
+#+REVEAL: split
+
+#+caption: Borramos el contenido
+[[file:2020-02-03-20-07-57.png]]
+
+#+REVEAL: split
+
+Lo reemplazamos por:
+
+#+begin_src cpp
+#include "SDL.h"
+
+int main(int char, char* argv[])
+{
+  return 0;
+}
+#+end_src
+
+#+REVEAL: split
+
+Es importante poner:
+
+#+begin_src cpp
+int main(int char, char* argv[]) {}
+#+end_src
+
+y no sólo:
+
+#+begin_src cpp
+int main() {}
+#+end_src
+
+Para que no haya problemas de enlazado con SDL
+
+#+REVEAL: split
+
+#+caption: Bajamos las "Development libraries"
+[[file:2020-02-03-20-25-09.png]]
+
+#+REVEAL: split
+
+Ahí están:
+
+- Los =.h= para compilar
+- Los =.lib= para enlazar
+- La =.dll= para ejecutar
+
+** Rutas de "includes"
+:PROPERTIES:
+:CUSTOM_ID: rutas-de-includes
+:END:
+#+caption: En "Propiedades del proyecto"
+[[file:2020-02-03-20-52-58.png]]
+
+#+REVEAL: split
+
+Vamos a establecer la misma ruta de =includes= para "Todas las
+configuraciones", en todas las plataformas
+
+#+caption: /Generalmente/, los includes valen para varias arquitecturas
+[[file:2020-02-03-20-53-34.png]]
+
+** Rutas de librerías
+:PROPERTIES:
+:CUSTOM_ID: rutas-de-librerías
+:END:
+Para x64 (aquí ya importa la plataforma):
+
+#+caption: La ruta de los =.lib= que queremos usar
+[[file:2020-02-03-20-45-39.png]]
+
+** Librerías
+:PROPERTIES:
+:CUSTOM_ID: librerías
+:END:
+#+caption: Los archivos =.lib= serán encontrados en las rutas que hemos
+puesto antes
+[[file:2020-02-07-16-15-58.png]]
+
+** Depuración
+:PROPERTIES:
+:CUSTOM_ID: depuración-1
+:END:
+#+caption: Elegimos la ruta desde la que se ejecutará el proyecto al
+depurar
+[[file:2020-02-07-16-17-47.png]]
+
+La ruta tiene que contener el archivo =SDL2.dll=
+
+** Arquitectura
+:PROPERTIES:
+:CUSTOM_ID: arquitectura-1
+:END:
+
+#+attr_html: :width 500 :height 500
+#+caption: El tipo de código objeto que se va a generar (hoy en día, x64 en general)
+[[file:2020-02-07-16-18-06.png]]
+
+** /Release/ vs. /Debug/
+:PROPERTIES:
+:CUSTOM_ID: release-vs.-debug
+:END:
+#+caption: Configuramos las opciones de cada una, y elegimos cómo queremos construir
+[[file:2020-02-07-16-18-24.png]]
+
+#+REVEAL: split
+
+Se pueden crear todas las configuraciones que se quieran
+
+#+REVEAL: split
+
+/Debug/ y /Release/ son sólo 2 de ejemplo ya creadas, con parámetros razonables
+
+** Consola/sin consola
+:PROPERTIES:
+:CUSTOM_ID: consolasin-consola
+:END:
+Es útil tener la consola de Windows en /Debug/, y quitarla en /Release/
+
+#+REVEAL: split
+
+#+caption: En /Debug/
+[[file:2020-02-07-16-36-11.png]]
+
+#+REVEAL: split
+
+#+caption: En /Release/
+[[file:2020-02-07-16-36-37.png]]

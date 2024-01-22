@@ -1,0 +1,26 @@
+#+title: Librerías y materiales C/C++ útiles
+#+OPTIONS: html-postamble:nil toc:nil ^:{}
+#+LANGUAGE: es
+
+
+- Físicas 2D
+  - [[https://box2d.org/][Box2D]]
+    - [[https://www.iforce2d.net/b2dtut/][iforce2d]] tiene una lista de recetas, aunque en algunos casos desactualizadas
+  - [[https://chipmunk-physics.net/][Chipmunk]]
+- Mapas
+  - [[https://github.com/fallahn/tmxlite][tmxlite]]
+- GUI
+  - [[https://github.com/wjakob/nanogui][NanoGUI]] ([[https://github.com/dalerank/nanogui-sdl][ejemplo de código con SDL]])
+  - [[https://github.com/ocornut/imgui][ImGui]]
+  - [[https://github.com/Immediate-Mode-UI/Nuklear][Nuklear]]
+- Redes
+  - [[https://github.com/libsdl-org/SDL_net][SDL_net]]
+  - [[http://enet.bespin.org/][ENet]] (más potente)
+  - [[https://github.com/nathhB/nbnet][nbnet]]
+  - [[https://think-async.com/Asio/][asio]]
+- Música/audio
+  - [[https://github.com/libsdl-org/SDL_mixer][SDL_mixer]]
+  - [[https://openal.org/][OpenAL]]
+- Entrada
+  - [[https://github.com/gabomdq/SDL_GameControllerDB][SDL_GameControllerDB]] (/mappings/ para /controllers/ en SDL2)
+  
