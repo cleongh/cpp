@@ -330,11 +330,14 @@ gcc -O2 sdl.cpp -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2 -o sdl.exe
 
 #+REVEAL: split
 
+
 #+caption: Ponemos los nombres de las rutas
+#+attr_html: :height 400
 [[file:2020-02-03-20-04-58.png]]
 
 #+REVEAL: split
 
+#+attr_html: :height 400
 #+caption: Borramos el contenido
 [[file:2020-02-03-20-07-57.png]]
 
@@ -408,16 +411,14 @@ Para x64 (aquí ya importa la plataforma):
 :PROPERTIES:
 :CUSTOM_ID: librerías
 :END:
-#+caption: Los archivos =.lib= serán encontrados en las rutas que hemos
-puesto antes
+#+caption: Los archivos =.lib= serán encontrados en las rutas que hemos puesto antes
 [[file:2020-02-07-16-15-58.png]]
 
 ** Depuración
 :PROPERTIES:
 :CUSTOM_ID: depuración-1
 :END:
-#+caption: Elegimos la ruta desde la que se ejecutará el proyecto al
-depurar
+#+caption: Elegimos la ruta desde la que se ejecutará el proyecto al depurar
 [[file:2020-02-07-16-17-47.png]]
 
 La ruta tiene que contener el archivo =SDL2.dll=
@@ -427,7 +428,7 @@ La ruta tiene que contener el archivo =SDL2.dll=
 :CUSTOM_ID: arquitectura-1
 :END:
 
-#+attr_html: :width 500 :height 500
+#+attr_html: :height 400
 #+caption: El tipo de código objeto que se va a generar (hoy en día, x64 en general)
 [[file:2020-02-07-16-18-06.png]]
 
