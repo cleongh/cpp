@@ -10,7 +10,7 @@
 - Mapas
   - [[https://github.com/fallahn/tmxlite][tmxlite]]
 - GUI
-  - [[https://github.com/wjakob/nanogui][NanoGUI]] ([[https://github.com/dalerank/nanogui-sdl][ejemplo de código con SDL]])
+  - [[https://github.com/mitsuba-renderer/nanogui][NanoGUI]] ([[https://github.com/dalerank/nanogui-sdl][ejemplo de código con SDL]])
   - [[https://github.com/ocornut/imgui][ImGui]]
   - [[https://github.com/Immediate-Mode-UI/Nuklear][Nuklear]]
 - Redes
