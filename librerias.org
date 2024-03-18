@@ -24,4 +24,5 @@
   - [[https://openal.org/][OpenAL]]
 - Entrada
   - [[https://github.com/gabomdq/SDL_GameControllerDB][SDL_GameControllerDB]] (/mappings/ para /controllers/ en SDL2)
-  
+- Clientes REST
+  - [[https://github.com/mrtazz/restclient-cpp][RestClient]]
