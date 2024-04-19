@@ -4,18 +4,18 @@ import { readFileSync } from 'node:fs';
 import path from 'path';
 
 export default new Transformer({
-	async transform({ asset }) {
+    async transform({ asset }) {
 
-		const filename = asset.filePath;
-		const bn = path.basename(filename, ".org");
+        const filename = asset.filePath;
+        const bn = path.basename(filename, ".org");
 
-		execSync(`emacs ${filename} --eval '(setq org-export-with-toc nil)' --eval '(setq org-html-link-org-files-as-html nil)' --batch -f org-html-export-to-html`)
+        execSync(`emacs ${filename} --eval '(setq org-export-with-toc nil)' --eval '(setq org-src-fontify-natively t)' --eval '(setq org-html-link-org-files-as-html nil)' --batch -f org-html-export-to-html`)
 
-		const stdout = readFileSync(`${bn}.html`);
+        const stdout = readFileSync(`${bn}.html`);
 
-		asset.type = 'html';
-		asset.setCode(stdout)
+        asset.type = 'html';
+        asset.setCode(stdout)
 
-		return [asset];
-	}
+        return [asset];
+    }
 });
