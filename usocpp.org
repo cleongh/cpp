@@ -1,0 +1,155 @@
+#+title: Uso de C/C++
+#+OPTIONS: html-postamble:nil toc:nil ^:{}
+#+bind: org-html-htmlize-output-type css
+#+LANGUAGE: es
+
+* STL y arrays
+
+
+Excepto si hay una razón muy clara, no hay muchos motivos para usar un array de bajo nivel. Para eso:
+
+- ~std::vector~: rápida, tiene memoria contigua y acceso constante a un elemento por número
+- ~std::list~: memoria no contigua, es una lista enlazada. A no ser que esté metiendo y sacando elementos en medio de la lista muy a menudo, suele ser usar std::vector
+- ~std::array~: básicamente, un array encapsulado. Tiene la ventaja de que alojas la memoria a priori (no como ~std::vector~, que es dinámico), pero más allá de eso, un ~std::vector~ es casi lo mismo.
+
+Es decir, excepto en casos concretos, ~std::vector~ para listas de cosas, ~std::map~ para clave-valor. Estas clases gestionan la memoria automáticamente y ponen un poco más difícil escribir donde no se debe (y enfrentarse a un error difícil de depurar).
+
+* Iteradores
+
+No uséis iteradores con índices:
+
+#+begin_src cpp
+// Mal
+for(int i = 0; i < mi_vector.size(); i++) {
+  mi_vector[i]->hacer_algo();
+ }
+#+end_src
+
+Es más engorroso, introduce sitios de error (hay que poner números), no es más eficiente, y hay muchos tipos de datos en los que hacer ~mitipo[i]~ puede ser muy lento. Es mejor:
+
+#+begin_src cpp
+// Bien
+for(auto &elemento : mi_vector) {
+  elemento->hacer_algo();
+ }
+#+end_src
+
+* Réplicas de código
+
+Si en alguna parte del código hay cosas como:
+
+#+begin_src cpp
+// Mal
+void init(scene* scene){
+  auto *c1 = crear_columna(100, 2500, scene);
+  c1->color = rojo;
+
+  auto *c2 = crear_columna(150, 2500, scene);
+  c2->color = amarillo;
+
+  auto *c3 = crear_columna(200, 2500, scene);
+  c3->color = verde;
+
+  auto *c4 = crear_columna(250, 2500, scene);
+  c4->color = azul;
+}
+#+end_src
+
+Es mucho mejor hacer una función y no repetir:
+
+#+begin_src cpp
+// Bien
+struct scene {
+  columna* crear_columna_en_escena(int x, int y, const color& c) {
+    columna *c = crear_columna(x, y, this);
+    c->color = c;
+    return c;
+  }
+};
+
+void init(scene *scene) {
+  scene->crear_columna_en_escena(100, 2500, rojo);
+  scene->crear_columna_en_escena(150, 2500, amarillo);
+  scene->crear_columna_en_escena(200, 2500, verde);
+  scene->crear_columna_en_escena(250, 2500, azul);
+}
+#+end_src
+
+
+* Objetos como parámetros
+
+Prácticamente nunca tiene sentido pasar un objeto *por valor*:
+
+#+begin_src cpp
+// Mal
+void haz_algo(std::string param) {
+  // ...
+}
+#+end_src
+
+Porque si quiero modificar ~param~, tengo que pasar una referencia (~std::string & param~), y si no quiero modificarlo, estoy haciendo una copia entera (potencialmente costoso) si lo paso por valor. Por tanto, para ~string~ y otros objetos:
+
+#+begin_src cpp
+// Bien: solo paso una referencia (barato)
+// y es `const', con lo que no puedo modificarlo
+void haz_algo(const std::string &param) {
+  // ...
+}
+#+end_src
+
+* Polimorfismo
+
+El polimorfismo ayuda a no tener que preguntar el estado o la identidad. Es decir, en vez de:
+
+#+begin_src cpp
+// Mal
+enum menu_t {PAUSA, INIT, END};
+
+struct menu {
+  menu_t tipo = INIT;
+  void render() {
+    switch(tipo) {
+    case PAUSA:
+      // ...
+      break;
+    case INIT:
+      // ...
+      break;
+    case END:
+      // ...
+      break;
+    }
+  }
+};
+#+end_src
+
+Es mucho mejor usar la herencia y sobreescribir ~render~:
+
+
+#+begin_src cpp
+// Bien
+
+struct menu {
+  virtual void render() = 0;
+};
+
+struct pausa : menu {
+  void render() override {
+    
+  }
+};
+struct init : menu {
+  void render() override {
+    
+  }
+};
+
+struct end : menu {
+  void render() override {
+
+  }
+};
+#+end_src
+
+
+Esto hace más flexible la arquitectura, permite extender mejor (crear nuevos tipos de menú), elimina datos y complejidad innecesario (como el ~enum~).

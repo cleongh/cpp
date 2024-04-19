@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Uso de C/C++</title><meta name="author" content="Carlos León"><meta name="generator" content="Org Mode"><style>#content{max-width:60em;margin:auto}.title{text-align:center;margin-bottom:.2em}.subtitle{text-align:center;margin-top:0;font-size:medium;font-weight:700}.todo{color:red;font-family:monospace}.done{color:green;font-family:monospace}.priority{color:orange;font-family:monospace}.tag{background-color:#eee;padding:2px;font-family:monospace;font-size:80%;font-weight:400}.timestamp{color:#bebebe}.timestamp-kwd{color:#5f9ea0}.org-right{text-align:right;margin-left:auto;margin-right:0}.org-left{text-align:left;margin-left:0;margin-right:auto}.org-center{text-align:center;margin-left:auto;margin-right:auto}.underline{text-decoration:underline}#postamble p,#preamble p{margin:.2em;font-size:90%}p.verse{margin-left:3%}pre{background-color:#f2f2f2;border:1px solid #e6e6e6;border-radius:3px;margin:1.2em;padding:8pt;font-family:monospace;overflow:auto}pre.src{position:relative;overflow:auto}pre.src:before{color:#555;background-color:#f2f2f299;padding:3px;display:none;position:absolute;top:-8px;right:12px}pre.src:hover:before{margin-top:14px;display:inline}pre.src-asymptote:before{content:"Asymptote"}pre.src-awk:before{content:"Awk"}pre.src-authinfo:before{content:"Authinfo"}pre.src-C:before{content:"C"}pre.src-clojure:before{content:"Clojure"}pre.src-css:before{content:"CSS"}pre.src-D:before{content:"D"}pre.src-ditaa:before{content:"ditaa"}pre.src-dot:before{content:"Graphviz"}pre.src-calc:before{content:"Emacs Calc"}pre.src-emacs-lisp:before{content:"Emacs Lisp"}pre.src-fortran:before{content:"Fortran"}pre.src-gnuplot:before{content:"gnuplot"}pre.src-haskell:before{content:"Haskell"}pre.src-hledger:before{content:"hledger"}pre.src-java:before{content:"Java"}pre.src-js:before{content:"Javascript"}pre.src-latex:before{content:"LaTeX"}pre.src-ledger:before{content:"Ledger"}pre.src-lisp:before{content:"Lisp"}pre.src-lilypond:before{content:"Lilypond"}pre.src-lua:before{content:"Lua"}pre.src-matlab:before{content:"MATLAB"}pre.src-mscgen:before{content:"Mscgen"}pre.src-ocaml:before{content:"Objective Caml"}pre.src-octave:before{content:"Octave"}pre.src-org:before{content:"Org mode"}pre.src-oz:before{content:"OZ"}pre.src-plantuml:before{content:"Plantuml"}pre.src-processing:before{content:"Processing.js"}pre.src-python:before{content:"Python"}pre.src-R:before{content:"R"}pre.src-ruby:before{content:"Ruby"}pre.src-sass:before{content:"Sass"}pre.src-scheme:before{content:"Scheme"}pre.src-screen:before{content:"Gnu Screen"}pre.src-sed:before{content:"Sed"}pre.src-sh:before{content:"shell"}pre.src-sql:before{content:"SQL"}pre.src-sqlite:before{content:"SQLite"}pre.src-forth:before{content:"Forth"}pre.src-io:before{content:"IO"}pre.src-J:before{content:"J"}pre.src-makefile:before{content:"Makefile"}pre.src-maxima:before{content:"Maxima"}pre.src-perl:before{content:"Perl"}pre.src-picolisp:before{content:"Pico Lisp"}pre.src-scala:before{content:"Scala"}pre.src-shell:before{content:"Shell Script"}pre.src-ebnf2ps:before{content:"ebfn2ps"}pre.src-cpp:before{content:"C++"}pre.src-abc:before{content:"ABC"}pre.src-coq:before{content:"Coq"}pre.src-groovy:before{content:"Groovy"}pre.src-bash:before{content:"bash"}pre.src-csh:before{content:"csh"}pre.src-ash:before{content:"ash"}pre.src-dash:before{content:"dash"}pre.src-ksh:before{content:"ksh"}pre.src-mksh:before{content:"mksh"}pre.src-posh:before{content:"posh"}pre.src-ada:before{content:"Ada"}pre.src-asm:before{content:"Assembler"}pre.src-caml:before{content:"Caml"}pre.src-delphi:before{content:"Delphi"}pre.src-html:before{content:"HTML"}pre.src-idl:before{content:"IDL"}pre.src-mercury:before{content:"Mercury"}pre.src-metapost:before{content:"MetaPost"}pre.src-modula-2:before{content:"Modula-2"}pre.src-pascal:before{content:"Pascal"}pre.src-ps:before{content:"PostScript"}pre.src-prolog:before{content:"Prolog"}pre.src-simula:before{content:"Simula"}pre.src-tcl:before{content:"tcl"}pre.src-tex:before{content:"TeX"}pre.src-plain-tex:before{content:"Plain TeX"}pre.src-verilog:before{content:"Verilog"}pre.src-vhdl:before{content:"VHDL"}pre.src-xml:before,pre.src-nxml:before{content:"XML"}pre.src-conf:before{content:"Configuration File"}table{border-collapse:collapse}caption.t-above{caption-side:top}caption.t-bottom{caption-side:bottom}td,th{vertical-align:top}th.org-right,th.org-left,th.org-center{text-align:center}td.org-right{text-align:right}td.org-left{text-align:left}td.org-center{text-align:center}dt{font-weight:700}.footpara{display:inline}.footdef{margin-bottom:1em}.figure{padding:1em}.figure p{text-align:center}.equation-container{text-align:center;width:100%;display:table}.equation{vertical-align:middle}.equation-label{text-align:right;vertical-align:middle;display:table-cell}.inlinetask{background:#ffc;border:2px solid gray;margin:10px;padding:10px}#org-div-home-and-up{text-align:right;white-space:nowrap;font-size:70%}textarea{overflow-x:auto}.linenr{font-size:smaller}.code-highlighted{background-color:#ff0}.org-info-js_info-navigation{border-style:none}#org-info-js_console-label{white-space:nowrap;font-size:10px;font-weight:700}.org-info-js_search-highlight{color:#000;background-color:#ff0;font-weight:700}</style></head><body> <div id="content" class="content"> <h1 class="title">Uso de C/C++</h1> <div id="outline-container-orgec72662" class="outline-2"> <h2 id="orgec72662"><span class="section-number-2">1.</span> STL y arrays</h2> <div class="outline-text-2" id="text-1"> <p> Excepto si hay una razón muy clara, no hay muchos motivos para usar un array de bajo nivel. Para eso: </p> <ul class="org-ul"> <li><code>std::vector</code>: rápida, tiene memoria contigua y acceso constante a un elemento por número</li> <li><code>std::list</code>: memoria no contigua, es una lista enlazada. A no ser que esté metiendo y sacando elementos en medio de la lista muy a menudo, suele ser usar std::vector</li> <li><code>std::array</code>: básicamente, un array encapsulado. Tiene la ventaja de que alojas la memoria a priori (no como <code>std::vector</code>, que es dinámico), pero más allá de eso, un <code>std::vector</code> es casi lo mismo.</li> </ul> <p> Es decir, excepto en casos concretos, <code>std::vector</code> para listas de cosas, <code>std::map</code> para clave-valor. Estas clases gestionan la memoria automáticamente y ponen un poco más difícil escribir donde no se debe (y enfrentarse a un error difícil de depurar). </p> </div> </div> <div id="outline-container-orgb171536" class="outline-2"> <h2 id="orgb171536"><span class="section-number-2">2.</span> Iteradores</h2> <div class="outline-text-2" id="text-2"> <p> No uséis iteradores con índices: </p> <div class="org-src-container"> <pre class="src src-cpp">// Mal
+for(int i = 0; i &lt; mi_vector.size(); i++) {
+  mi_vector[i]-&gt;hacer_algo();
+ }
+</pre> </div> <p> Es más engorroso, introduce sitios de error (hay que poner números), no es más eficiente, y hay muchos tipos de datos en los que hacer <code>mitipo[i]</code> puede ser muy lento. Es mejor: </p> <div class="org-src-container"> <pre class="src src-cpp">// Bien
+for(auto &amp;elemento : mi_vector) {
+  elemento-&gt;hacer_algo();
+ }
+</pre> </div> </div> </div> <div id="outline-container-org4259bce" class="outline-2"> <h2 id="org4259bce"><span class="section-number-2">3.</span> Réplicas de código</h2> <div class="outline-text-2" id="text-3"> <p> Si en alguna parte del código hay cosas como: </p> <div class="org-src-container"> <pre class="src src-cpp">// Mal
+void init(scene* scene){
+  auto *c1 = crear_columna(100, 2500, scene);
+  c1-&gt;color = rojo;
+
+  auto *c2 = crear_columna(150, 2500, scene);
+  c2-&gt;color = amarillo;
+
+  auto *c3 = crear_columna(200, 2500, scene);
+  c3-&gt;color = verde;
+
+  auto *c4 = crear_columna(250, 2500, scene);
+  c4-&gt;color = azul;
+}
+</pre> </div> <p> Es mucho mejor hacer una función y no repetir: </p> <div class="org-src-container"> <pre class="src src-cpp">// Bien
+struct scene {
+  columna* crear_columna_en_escena(int x, int y, const color&amp; c) {
+    columna *c = crear_columna(x, y, this);
+    c-&gt;color = c;
+    return c;
+  }
+};
+
+void init(scene *scene) {
+  scene-&gt;crear_columna_en_escena(100, 2500, rojo);
+  scene-&gt;crear_columna_en_escena(150, 2500, amarillo);
+  scene-&gt;crear_columna_en_escena(200, 2500, verde);
+  scene-&gt;crear_columna_en_escena(250, 2500, azul);
+}
+</pre> </div> </div> </div> <div id="outline-container-org9f362eb" class="outline-2"> <h2 id="org9f362eb"><span class="section-number-2">4.</span> Objetos como parámetros</h2> <div class="outline-text-2" id="text-4"> <p> Prácticamente nunca tiene sentido pasar un objeto <b>por valor</b>: </p> <div class="org-src-container"> <pre class="src src-cpp">// Mal
+void haz_algo(std::string param) {
+  // ...
+}
+</pre> </div> <p> Porque si quiero modificar <code>param</code>, tengo que pasar una referencia (<code>std::string &amp; param</code>), y si no quiero modificarlo, estoy haciendo una copia entera (potencialmente costoso) si lo paso por valor. Por tanto, para <code>string</code> y otros objetos: </p> <div class="org-src-container"> <pre class="src src-cpp">// Bien: solo paso una referencia (barato)
+// y es `const', con lo que no puedo modificarlo
+void haz_algo(const std::string &amp;param) {
+  // ...
+}
+</pre> </div> </div> </div> <div id="outline-container-org88c3b54" class="outline-2"> <h2 id="org88c3b54"><span class="section-number-2">5.</span> Polimorfismo</h2> <div class="outline-text-2" id="text-5"> <p> El polimorfismo ayuda a no tener que preguntar el estado o la identidad. Es decir, en vez de: </p> <div class="org-src-container"> <pre class="src src-cpp">// Mal
+enum menu_t {PAUSA, INIT, END};
+
+struct menu {
+  menu_t tipo = INIT;
+  void render() {
+    switch(tipo) {
+    case PAUSA:
+      // ...
+      break;
+    case INIT:
+      // ...
+      break;
+    case END:
+      // ...
+      break;
+    }
+  }
+};
+</pre> </div> <p> Es mucho mejor usar la herencia y sobreescribir <code>render</code>: </p> <div class="org-src-container"> <pre class="src src-cpp">// Bien
+
+struct menu {
+  virtual void render() = 0;
+};
+
+struct pausa : menu {
+  void render() override {
+
+  }
+};
+struct init : menu {
+  void render() override {
+
+  }
+};
+
+struct end : menu {
+  void render() override {
+
+  }
+};
+</pre> </div> <p> Esto hace más flexible la arquitectura, permite extender mejor (crear nuevos tipos de menú), elimina datos y complejidad innecesario (como el <code>enum</code>). </p> </div> </div> </div> </body></html>
