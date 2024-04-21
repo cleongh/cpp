@@ -9,8 +9,8 @@
 Excepto si hay una razón muy clara, no hay muchos motivos para usar un array de bajo nivel. Para eso:
 
 - ~std::vector~: rápida, tiene memoria contigua y acceso constante a un elemento por número
-- ~std::list~: memoria no contigua, es una lista enlazada. A no ser que esté metiendo y sacando elementos en medio de la lista muy a menudo, suele ser usar std::vector
-- ~std::array~: básicamente, un array encapsulado. Tiene la ventaja de que alojas la memoria a priori (no como ~std::vector~, que es dinámico), pero más allá de eso, un ~std::vector~ es casi lo mismo.
+- ~std::list~: memoria no contigua, es una lista enlazada. A no ser que esté metiendo y sacando elementos en medio de la lista muy a menudo, suele ser más razonable usar ~std::vector~.
+- ~std::array~: básicamente, un array encapsulado. Tiene la ventaja de que alojas la memoria a priori (no como ~std::vector~, que es dinámico), y en la pila, con lo que si el array es pequeño, el tamaño no cambia y cabe en la pila, es una opción.
 
 Es decir, excepto en casos concretos, ~std::vector~ para listas de cosas, ~std::map~ para clave-valor. Estas clases gestionan la memoria automáticamente y ponen un poco más difícil escribir donde no se debe (y enfrentarse a un error difícil de depurar).
 
