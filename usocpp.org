@@ -166,3 +166,30 @@ Creo con:
 #+begin_src cpp
 new pausa();
 #+end_src
+
+* Ciclo de vida de objetos
+
+Un objeto puede estar en la pila (/stack/) o en el montículo (/heap/). No es necesario usar un objeto siempre con un ~new~. Por ejemplo, este código:
+
+#+begin_src cpp
+// No muy bien
+void funcion() {
+  MiClase *objeto = new MyClase(4, "seis");
+  objeto->metodo();
+  delete objeto;
+}
+#+end_src
+
+Se puede escribir de forma más simple (y probablemente más eficiente) así:
+
+#+begin_src cpp
+// Mejor
+void funcion() {
+  MiClase objeto(4, "seis");
+  objeto.metodo();
+}
+#+end_src
+
+En este segundo caso, ~objeto~ está en la pila (no se usa memoria dinámica), y cuando sale de la pila al acabar la función, se destruye.
+
+Hay un principio en C++ llamado [[https://es.wikipedia.org/wiki/RAII][RAII]]. Tiene muchas implicaciones, pero una cosa que tenéis que tener en cuenta es que C++ asegura que el destructor de un objeto se llama cuando este se destruye (incluso con excepciones). Esto quiere decir que en ambos ejemplos anteriores se llamará al constructor y al destructor.

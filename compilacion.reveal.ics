@@ -1,0 +1,8 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+X-WR-CALNAME:compilacion.reveal
+PRODID:-//Carlos León//Emacs with Org mode//EN
+X-WR-TIMEZONE:CET
+X-WR-CALDESC:Compilación C/C++
+CALSCALE:GREGORIAN
+END:VCALENDAR
