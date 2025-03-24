@@ -193,3 +193,7 @@ void funcion() {
 En este segundo caso, ~objeto~ está en la pila (no se usa memoria dinámica), y cuando sale de la pila al acabar la función, se destruye.
 
 Hay un principio en C++ llamado [[https://es.wikipedia.org/wiki/RAII][RAII]]. Tiene muchas implicaciones, pero una cosa que tenéis que tener en cuenta es que C++ asegura que el destructor de un objeto se llama cuando este se destruye (incluso con excepciones). Esto quiere decir que en ambos ejemplos anteriores se llamará al constructor y al destructor.
+
+* Formatear código
+
+Para la entrega final (e, idealmente, para todo el desarrollo), deberíais tener el código bien indentado/formateado. Recordad que Visual Studio lo hace por vosotros, solo tenéis que llamar a la función.

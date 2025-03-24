@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-20 lun 12:03 -->
+<!-- 2025-03-24 lun 17:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Uso de C/C++</title>
@@ -197,8 +197,8 @@
 <body>
 <div id="content" class="content">
 <h1 class="title">Uso de C/C++</h1>
-<div id="outline-container-orgfeec12a" class="outline-2">
-<h2 id="orgfeec12a"><span class="section-number-2">1.</span> STL y arrays</h2>
+<div id="outline-container-orgfd05acf" class="outline-2">
+<h2 id="orgfd05acf"><span class="section-number-2">1.</span> STL y arrays</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Excepto si hay una razón muy clara, no hay muchos motivos para usar un array de bajo nivel. Para eso:
@@ -215,8 +215,8 @@ Es decir, excepto en casos concretos, <code>std::vector</code> para listas de co
 </p>
 </div>
 </div>
-<div id="outline-container-orgf6f43a0" class="outline-2">
-<h2 id="orgf6f43a0"><span class="section-number-2">2.</span> Iteradores</h2>
+<div id="outline-container-orgcebb464" class="outline-2">
+<h2 id="orgcebb464"><span class="section-number-2">2.</span> Iteradores</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 No uséis iteradores con índices:
@@ -243,8 +243,8 @@ for(auto &amp;elemento : mi_vector) {
 </div>
 </div>
 </div>
-<div id="outline-container-org23e6d13" class="outline-2">
-<h2 id="org23e6d13"><span class="section-number-2">3.</span> Réplicas de código</h2>
+<div id="outline-container-org3725205" class="outline-2">
+<h2 id="org3725205"><span class="section-number-2">3.</span> Réplicas de código</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Si en alguna parte del código hay cosas como:
@@ -292,8 +292,8 @@ void init(scene *scene) {
 </div>
 </div>
 </div>
-<div id="outline-container-org1560378" class="outline-2">
-<h2 id="org1560378"><span class="section-number-2">4.</span> Objetos como parámetros</h2>
+<div id="outline-container-org55e4333" class="outline-2">
+<h2 id="org55e4333"><span class="section-number-2">4.</span> Objetos como parámetros</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Prácticamente nunca tiene sentido pasar un objeto <b>por valor</b>:
@@ -321,8 +321,8 @@ void haz_algo(const std::string &amp;param) {
 </div>
 </div>
 </div>
-<div id="outline-container-org444dc67" class="outline-2">
-<h2 id="org444dc67"><span class="section-number-2">5.</span> Polimorfismo</h2>
+<div id="outline-container-orga52e506" class="outline-2">
+<h2 id="orga52e506"><span class="section-number-2">5.</span> Polimorfismo</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 El polimorfismo ayuda a no tener que preguntar el estado o la identidad. Es decir, en vez de:
@@ -407,8 +407,8 @@ Creo con:
 </div>
 </div>
 </div>
-<div id="outline-container-orgc86f78c" class="outline-2">
-<h2 id="orgc86f78c"><span class="section-number-2">6.</span> Ciclo de vida de objetos</h2>
+<div id="outline-container-orgc4dc1f4" class="outline-2">
+<h2 id="orgc4dc1f4"><span class="section-number-2">6.</span> Ciclo de vida de objetos</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Un objeto puede estar en la pila (<i>stack</i>) o en el montículo (<i>heap</i>). No es necesario usar un objeto siempre con un <code>new</code>. Por ejemplo, este código:
@@ -443,6 +443,14 @@ En este segundo caso, <code>objeto</code> está en la pila (no se usa memoria di
 
 <p>
 Hay un principio en C++ llamado <a href="https://es.wikipedia.org/wiki/RAII">RAII</a>. Tiene muchas implicaciones, pero una cosa que tenéis que tener en cuenta es que C++ asegura que el destructor de un objeto se llama cuando este se destruye (incluso con excepciones). Esto quiere decir que en ambos ejemplos anteriores se llamará al constructor y al destructor.
+</p>
+</div>
+</div>
+<div id="outline-container-org47344f2" class="outline-2">
+<h2 id="org47344f2"><span class="section-number-2">7.</span> Formatear código</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Para la entrega final (e, idealmente, para todo el desarrollo), deberíais tener el código bien indentado/formateado. Recordad que Visual Studio lo hace por vosotros, solo tenéis que llamar a la función.
 </p>
 </div>
 </div>
